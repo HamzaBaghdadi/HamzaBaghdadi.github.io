@@ -15,6 +15,10 @@
   background: #7d0ce7;
 }
 
+::selection {
+  background: #892be27c;
+}
+
 html {
   scroll-behavior: smooth;
 }
