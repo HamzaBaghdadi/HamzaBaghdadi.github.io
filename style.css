@@ -130,6 +130,7 @@ nav a:hover {
   text-decoration: none;
   color: #8a2be2;
   font-size: 2em;
+  text-shadow: 0 4px 10px black;
   transition: transform 0.3s, color 0.3s;
 }
 .social-media a:hover {
