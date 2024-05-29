@@ -128,4 +128,7 @@ footer p {
   .music-card {
     width: calc(100% - 20px);
   }
+  header h2 {
+    font-size: 1.5em;
+  }
 }
