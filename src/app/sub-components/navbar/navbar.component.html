@@ -1,0 +1,12 @@
+<nav
+  class="flex justify-content-center align-items-center gap-5 surface-0 shadow-7 p-3 select-none text-xl flex-wrap white-space-nowrap"
+>
+  @for(link of links; track link){
+  <a
+    class="text-white no-underline hover:text-primary transition-duration-150"
+    [routerLink]="link.uri"
+    (click)="link.id ? scrollTo(link.id) : null"
+    >{{ link.label }}</a
+  >
+  }
+</nav>

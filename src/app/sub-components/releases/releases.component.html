@@ -1,0 +1,32 @@
+<div
+  class="flex flex-column gap-8 align-items-center fadein"
+  style="padding: 40px 20px"
+>
+  <span
+    class="text-4xl sm:text-5xl font-bold border-bottom-3 border-primary white-space-nowrap"
+    >Official Releases</span
+  >
+  <div class="grid justify-content-center gap-6 select-none">
+    @for(release of releases; track release){
+    <a
+      class="flex flex-column align-items-center gap-3 pb-4 text-2xl font-bold text-white no-underline border-round-3xl shadow-4 transition-duration-300 hover"
+      style="background-color: rgba(34, 34, 34, 0.8)"
+      [href]="release.uri"
+    >
+      <img
+        class="border-bottom-1"
+        style="border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem"
+        [src]="release.img"
+        [alt]="release.title"
+        loading="lazy"
+      />
+      <span>
+        {{ release.title }}
+      </span>
+      @if(release.incoming){
+      <span> Coming soon </span>
+      }
+    </a>
+    }
+  </div>
+</div>

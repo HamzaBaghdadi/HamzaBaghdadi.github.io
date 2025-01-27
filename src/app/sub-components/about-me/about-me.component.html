@@ -1,0 +1,48 @@
+<div
+  class="flex flex-column gap-8 align-items-center fadein"
+  style="padding: 40px 20px"
+>
+  <div
+    class="flex flex-column align-items-center gap-6"
+    id="about-me"
+    style="max-width: 1000px"
+  >
+    <span
+      class="text-4xl sm:text-5xl font-bold border-bottom-3 border-primary white-space-nowrap"
+      >About Me</span
+    >
+    <span class="text-xl text-center">
+      Hamza Baghdadi is an up-and-coming Syrian rapper and musician. He has been
+      making music since he was a young teenager. His music focuses on topics
+      such as personal growth and social issues. Hamza hopes to use his music as
+      a platform to share his stories with the world and create positive change
+      in his community. He continues to work hard on perfecting his craft,
+      releasing new songs regularly, and collaborating with other artists.
+    </span>
+  </div>
+  <div
+    class="flex flex-column align-items-center surface-0 shadow-4 border-round-xl p-5 gap-6 w-full"
+    id="last-music"
+    style="max-width: 1000px"
+  >
+    <span class="text-5xl font-bold border-bottom-3 border-primary">Music</span>
+    <span class="text-xl text-center">
+      Discover Hamza Baghdadi's latest tracks and albums. Stay tuned for new
+      releases and exclusive content.
+    </span>
+    <div
+      class="relative w-full overflow-hidden shadow-2"
+      style="padding-bottom: 56.25%"
+    >
+      <iframe
+        class="absolute w-full h-full"
+        [src]="sanitizeUrl()"
+        [title]="lastMusic.title"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+  <app-social-media id="social-media"></app-social-media>
+</div>
