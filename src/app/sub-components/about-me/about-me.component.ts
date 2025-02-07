@@ -13,8 +13,8 @@ type Music = { title: string; uri: string };
 })
 export class AboutMeComponent {
   lastMusic: Music = {
-    title: 'Hamza Baghdadi - بتهون (Official Audio)',
-    uri: 'https://www.youtube.com/watch?v=v5LNQ9hFuUw',
+    title: 'Hamza Baghdadi - فيرونيكا (Official Audio)',
+    uri: 'https://www.youtube.com/watch?v=Sa6o4eZB2Rk',
   };
 
   constructor(private sanitizer: DomSanitizer) {}
