@@ -11,6 +11,11 @@ type Release = { title: string; uri: string; img: string; incoming?: boolean };
 export class ReleasesComponent {
   releases: Release[] = [
     {
+      title: 'فيرونيكا',
+      uri: 'https://www.youtube.com/watch?v=Sa6o4eZB2Rk',
+      img: 'veronica.webp',
+    },
+    {
       title: 'بتهون',
       uri: 'https://www.youtube.com/watch?v=v5LNQ9hFuUw',
       img: 'بتهون.png',

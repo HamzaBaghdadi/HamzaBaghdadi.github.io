@@ -12,10 +12,15 @@
       class="flex flex-column align-items-center gap-3 pb-4 text-2xl font-bold text-white no-underline border-round-3xl shadow-4 transition-duration-300 hover"
       style="background-color: rgba(34, 34, 34, 0.8)"
       [href]="release.uri"
+      target="_blank"
     >
       <img
         class="border-bottom-1"
-        style="border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem"
+        style="
+          border-top-left-radius: 1.5rem;
+          border-top-right-radius: 1.5rem;
+          max-width: 19rem;
+        "
         [src]="release.img"
         [alt]="release.title"
         loading="lazy"
