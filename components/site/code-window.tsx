@@ -101,13 +101,13 @@ export function CodeWindow() {
 
   return (
     <figure className="overflow-hidden rounded-xl border border-border bg-surface shadow-2xl shadow-black/20 dark:shadow-black/60">
-      <div className="flex items-center gap-3 border-b border-border px-4">
-        <div aria-hidden className="flex gap-1.5">
+      <div className="flex min-w-0 items-center gap-3 border-b border-border px-4">
+        <div aria-hidden className="flex shrink-0 gap-1.5">
           <span className="size-2.5 rounded-full bg-foreground/15" />
           <span className="size-2.5 rounded-full bg-foreground/15" />
           <span className="size-2.5 rounded-full bg-foreground/15" />
         </div>
-        <div role="tablist" aria-label="Framework" className="flex">
+        <div role="tablist" aria-label="Framework" className="flex min-w-0">
           {files.map((f, i) => (
             <button
               key={f.name}
@@ -118,7 +118,7 @@ export function CodeWindow() {
               aria-controls="code-panel"
               onClick={() => setActive(i)}
               className={cn(
-                "relative px-3 py-2.5 font-mono text-xs transition-colors",
+                "relative shrink-0 px-3 py-2.5 font-mono text-xs whitespace-nowrap transition-colors",
                 active === i ? "text-foreground" : "text-faint hover:text-muted-foreground",
               )}
             >
@@ -127,7 +127,7 @@ export function CodeWindow() {
             </button>
           ))}
         </div>
-        <figcaption className="ml-auto hidden text-xs text-faint sm:block">Same component, two frameworks</figcaption>
+        <figcaption className="ml-auto hidden shrink-0 text-xs whitespace-nowrap text-faint xl:block">Same component, two frameworks</figcaption>
       </div>
       <pre
         id="code-panel"
