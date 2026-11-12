@@ -1,26 +1,219 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+  --font-arabic: var(--font-arabic-sans);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-faint: var(--faint);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/*
+ * Light theme. The site defaults to dark; this is the alternative.
+ */
+:root {
+  --background: #fbfbfc;
+  --foreground: #0d0e10;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --card-foreground: #0d0e10;
+  --popover: #ffffff;
+  --popover-foreground: #0d0e10;
+  --primary: #0d0e10;
+  --primary-foreground: #fbfbfc;
+  --secondary: #f1f2f4;
+  --secondary-foreground: #0d0e10;
+  --muted: #f1f2f4;
+  --muted-foreground: #5c616b;
+  --faint: #8b909a;
+  --accent: #f1f2f4;
+  --accent-foreground: #0d0e10;
+  --destructive: #d92d20;
+  --border: rgb(13 14 16 / 0.09);
+  --line: rgb(13 14 16 / 0.06);
+  --input: rgb(13 14 16 / 0.12);
+  --ring: #d4304a;
+  --brand: #d4304a;
+  --brand-soft: rgb(212 48 74 / 0.1);
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: #08090a;
+  --foreground: #f4f5f6;
+  --surface: #0e0f11;
+  --card: #101113;
+  --card-foreground: #f4f5f6;
+  --popover: #141518;
+  --popover-foreground: #f4f5f6;
+  --primary: #f4f5f6;
+  --primary-foreground: #08090a;
+  --secondary: #17181b;
+  --secondary-foreground: #f4f5f6;
+  --muted: #17181b;
+  --muted-foreground: #9599a1;
+  --faint: #6b6f78;
+  --accent: #1a1b1f;
+  --accent-foreground: #f4f5f6;
+  --destructive: #f97066;
+  --border: rgb(255 255 255 / 0.08);
+  --line: rgb(255 255 255 / 0.05);
+  --input: rgb(255 255 255 / 0.12);
+  --ring: #ff5a72;
+  --brand: #ff5a72;
+  --brand-soft: rgb(255 90 114 / 0.12);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+  }
+  ::selection {
+    background: var(--brand-soft);
+    color: var(--foreground);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Faint grid behind the hero, faded out toward the edges. */
+  .hero-grid {
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 30%, transparent 75%);
+  }
+
+  /* Pattern for project preview panels. */
+  .dots {
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  /*
+   * Sections ease in as they scroll into view. Uses scroll-driven animations,
+   * so there is no JS and content stays visible where it isn't supported.
+   */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+
+  /* Card border that lights up under the pointer (see components/site/spotlight.tsx). */
+  .spotlight {
+    position: relative;
+    isolation: isolate;
+  }
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+      320px circle at var(--x, 50%) var(--y, 50%),
+      color-mix(in oklab, var(--foreground) 22%, transparent),
+      transparent 70%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes eq {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@utility animate-rise {
+  animation: rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
