@@ -4,27 +4,32 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * The same preset-driven button written for React and for Angular, with a small
- * dependency-free highlighter that only needs to handle these two snippets.
+ * Two short code samples: a generic React example and SemiUI's Angular button.
+ * The highlighter is dependency-free and only needs to handle these two snippets.
  */
 
-const reactSnippet = `type ButtonProps = ComponentProps<'button'> & {
-  variant?: Variant;
-  size?: Size;
-};
+const reactSnippet = `export function useDebouncedValue<T>(value: T, delay = 300) {
+  const [debounced, setDebounced] = useState(value);
 
-export function Button({
-  variant = 'solid',
-  size = 'md',
-  className,
-  ...props
-}: ButtonProps) {
-  const preset = usePreset();
+  useEffect(() => {
+    const id = setTimeout(() => setDebounced(value), delay);
+    return () => clearTimeout(id);
+  }, [value, delay]);
+
+  return debounced;
+}
+
+export function SearchBox({ onSearch }: SearchBoxProps) {
+  const [query, setQuery] = useState('');
+  const debounced = useDebouncedValue(query);
+
+  useEffect(() => onSearch(debounced), [debounced, onSearch]);
 
   return (
-    <button
-      className={cn(preset.button({ variant, size }), className)}
-      {...props}
+    <input
+      type="search"
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
     />
   );
 }`;
@@ -49,7 +54,7 @@ export class SemiButton {
 }`;
 
 const files = [
-  { name: "Button.tsx", label: "React", code: reactSnippet },
+  { name: "search-box.tsx", label: "React", code: reactSnippet },
   { name: "semi-button.ts", label: "Angular", code: angularSnippet },
 ];
 
@@ -126,9 +131,7 @@ export function CodeWindow() {
               {active === i && <span aria-hidden className="absolute inset-x-3 -bottom-px h-px bg-brand" />}
             </button>
           ))}
-        </div>
-        <figcaption className="ml-auto hidden shrink-0 text-xs whitespace-nowrap text-faint xl:block">Same component, two frameworks</figcaption>
-      </div>
+        </div>      </div>
       <pre
         id="code-panel"
         role="tabpanel"
