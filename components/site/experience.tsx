@@ -2,6 +2,7 @@ import { experience, stackItems } from "@/content/profile";
 import { formatMonth } from "@/lib/site";
 import { Container, SectionHeading } from "./section-heading";
 import { Spotlight } from "./spotlight";
+import { CompanyLogo } from "./company-logos";
 import { TechIcon } from "./tech-icon";
 
 export function Experience() {
@@ -22,12 +23,7 @@ export function Experience() {
               <Spotlight className="reveal p-6 sm:p-8">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="flex items-center gap-4">
-                    <span
-                      aria-hidden
-                      className="grid size-12 shrink-0 place-items-center rounded-xl border border-border bg-surface text-lg font-semibold"
-                    >
-                      {job.company.charAt(0)}
-                    </span>
+                    <CompanyLogo company={job.company} />
                     <div>
                       <h3 className="text-lg font-semibold tracking-tight">{job.role}</h3>
                       <p className="text-muted-foreground">{job.company}</p>
