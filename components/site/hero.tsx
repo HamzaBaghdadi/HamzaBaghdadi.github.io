@@ -34,7 +34,7 @@ export function Hero() {
         className="pointer-events-none absolute -top-40 left-1/2 h-[28rem] w-[56rem] -translate-x-1/2 rounded-full bg-brand/[0.07] blur-3xl"
       />
 
-      <Container className="relative grid grid-cols-[minmax(0,1fr)] items-center gap-12 pt-12 pb-16 sm:gap-14 sm:pt-20 sm:pb-20 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-10 lg:pt-28 lg:pb-28">
+      <Container className="relative grid grid-cols-[minmax(0,1fr)] items-center gap-12 pt-10 pb-16 sm:gap-14 sm:pt-14 sm:pb-20 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-12 lg:pt-14 lg:pb-24">
         <div>
           <div className="animate-rise flex flex-wrap items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element -- static export, image is pre-sized */}
@@ -128,7 +128,7 @@ export function Hero() {
 
         <div className="animate-rise relative min-w-0 [animation-delay:200ms] lg:pl-4">
           <CodeWindow />
-          <PresetPreview className="relative mt-4 w-full sm:w-[17.5rem] lg:absolute lg:-bottom-20 lg:-left-14 lg:mt-0" />
+          <PresetPreview className="relative mt-4 w-full sm:w-[17.5rem] lg:absolute lg:-right-5 lg:-bottom-16 lg:mt-0" />
         </div>
       </Container>
 
